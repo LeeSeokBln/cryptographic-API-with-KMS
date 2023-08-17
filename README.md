@@ -1,4 +1,4 @@
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/5f23df4f-b193-488b-8312-d9c52c19dbed)# cryptographic-API-with-KMS
+# cryptographic-API-with-KMS
 Building a Cryptographic API Using AWS KMS
 
 ![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/215c3db5-c722-4a8d-b101-49cf8ca0a738)
