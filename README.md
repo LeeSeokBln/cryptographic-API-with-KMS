@@ -142,7 +142,8 @@ curl -sS --location --request POST 'https://nfbfptsbjg.execute-api.ap-northeast-
 
 DynamoDB에 해당 “Welcome To Gongma!!!!!!” 문구가 암호화되서 저장
 
-![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/77ab10a3-5701-4957-9c82-d7933f8c49a1)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/762203e9-f4b3-48bf-a7b7-9942b367675d)
+
 
 
 데이터를 복호화
