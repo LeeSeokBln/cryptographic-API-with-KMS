@@ -151,5 +151,11 @@ DynamoDB에 해당 “MY API TEST” 문구가 암호화되서 저장
 ```
 curl -sS --location --request POST 'https://nfbfptsbjg.execute-api.ap-northeast-2.amazonaws.com/prod/decrtpt' --header 'Content-Type: application/json' --data-raw '{"uuid": "d8a90883-89aa-48df-9b1d-71fb3853620f"}'
 ```
-``` MY API TEST ```
+``` 
+
+
+    MY API TEST
+
+
+ ```
 
