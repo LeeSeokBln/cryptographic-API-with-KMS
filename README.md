@@ -12,8 +12,11 @@ tables을 생성
 ### Create KMS
 
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/a7689013-7aad-4faa-9322-433e9dd30252)
+
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/e6c3c043-487d-4890-b51d-b541220c5d66)
+
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/156d8602-e77b-4f08-93dd-cc7c376b6569)
+
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/d625de0a-5943-4491-857d-9bcf15158ff9)
 
 
@@ -113,9 +116,13 @@ def lambda_handler(event, context):
 ### Create API Gateway
 
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/06ffcf11-d6aa-4b7e-a5cb-8e09fc4291e4)
+
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/d9fab148-a37e-4f24-90fe-8e18294e5c0d)
+
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/5ecf5f05-822f-41c6-ac02-59c27eead9a8)
+
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/c8b9ce4a-3fb9-4a74-9312-7a393b7c2963)
+
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/2076c168-205d-4442-aca6-7e088ed45791)
 
 
