@@ -4,17 +4,19 @@ Building a Cryptographic API Using AWS KMS
 
 ### Create DynamoDB Table
 
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/46c5d7af-841b-4305-b3cf-93273e7ecf8b)
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/22553e89-f99f-49c8-9400-6b33538b0361)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/9f1e0c6d-9896-4ec6-9d91-a1641705812f)
+
 
 tables을 생성
 
 ### Create KMS
 
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/4d4b11aa-32cf-4a0b-9937-172da0340d33)
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/8723337e-d06a-4934-89b2-5e9c69333cab)
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/12c8219f-ddbf-403a-8724-f4ac00329d15)
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/cb1b5000-440e-440e-9ce2-469574665389)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/a7689013-7aad-4faa-9322-433e9dd30252)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/e6c3c043-487d-4890-b51d-b541220c5d66)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/156d8602-e77b-4f08-93dd-cc7c376b6569)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/d625de0a-5943-4491-857d-9bcf15158ff9)
+
+
 
 나머지는 기본 값으로 생성
 
@@ -44,38 +46,35 @@ def decrypt(session, encrypted_password):
     return plaintext["Plaintext"]
 
 def put_db(resource, encrypt_text):
-    table = resource.Table("demo-dynamodb-tables")
+    table = resource.Table("db-table")
     item = {'id': str(uuid.uuid4()), 'text': encrypt_text}
     resp = table.put_item(Item=item)
     return resp
 
 def get_db(resource, uuid):
-    table = resource.Table("demo-dynamodb-tables")
+    table = resource.Table("db-table")
     resp = table.get_item(Key={'id': uuid})    
     return resp['Item']['text']
 
 def lambda_handler(event, context):
-    # return event
-    try:
-        session = boto3.session.Session(region_name='ap-northeast-2')
-        resource = boto3.resource('dynamodb')
-        client = boto3.client('dynamodb')
-        
-        key_id = 'alias/demo-kms'
-        
-        if event['plaintext'] != None:
-            encrypt_text = encrypt(session, key_id, event['plaintext'])
-            put_db(resource, encrypt_text)
-            return json.dumps('{"msg": "Put Database is Finished"}')
-        else:
-            return json.dumps('{"msg": "ERR"}')
-        
-    except KeyError:
-        if event['uuid'] != None:
-            response_db = get_db(resource, event['uuid'])
-            return decrypt(session, response_db)
-        else:
-            return json.dumps('{"msg": "ERR"}')
+    session = boto3.session.Session(region_name='ap-northeast-2')
+    resource = boto3.resource('dynamodb')
+    client = boto3.client('dynamodb')
+    key_id = 'alias/seokbin-kms'
+    
+    plaintext = event.get('plaintext')
+    uuid_val = event.get('uuid')
+
+    if plaintext:
+        encrypt_text = encrypt(session, key_id, plaintext)
+        put_db(resource, encrypt_text)
+        return json.dumps('{"msg": "Put Database is Finished"}')
+    elif uuid_val:
+        response_db = get_db(resource, uuid_val)
+        return decrypt(session, response_db)
+    else:
+        return json.dumps('{"msg": "ERR"}')
+
 ```
 해당 Lambda 함수에는 아래와 같은 권한을 부여
 ```
@@ -113,32 +112,36 @@ def lambda_handler(event, context):
 
 ### Create API Gateway
 
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/c44363dc-0313-4e15-9854-8d79e3175809)
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/3a86f11f-f755-449e-8fff-2b1617096552)
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/aef62aeb-102a-4221-b0bf-be334f5c8a75)
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/aa6d6626-ceb1-4f94-aa04-d397a2ca98a9)
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/1cb6dc5c-267a-4ca3-a2c7-638ad1a825fd)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/06ffcf11-d6aa-4b7e-a5cb-8e09fc4291e4)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/d9fab148-a37e-4f24-90fe-8e18294e5c0d)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/5ecf5f05-822f-41c6-ac02-59c27eead9a8)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/c8b9ce4a-3fb9-4a74-9312-7a393b7c2963)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/2076c168-205d-4442-aca6-7e088ed45791)
+
 
 resource가 encrypt인 경우 암호화만 가능하고, decrypt인 경우 복호화만 가능하게 구성
 위 방식으로 Decrypt 생성
 
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/24f833ca-9aa8-42ab-b363-02447316753b)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/ef568fcb-7b40-403e-9a8e-424f7875872a)
+
 
 Deploy한 후 curl 요청
 
 ```
-curl -sS --location --request POST 'https://d80a08cdhe.execute-api.ap-northeast-2.amazonaws.com/deploy/encrypt' --header 'Content-Type: application/json' --data-raw '{"plaintext": "Welcome To Gongma!!!!!!"}'
+curl -sS --location --request POST 'https://nfbfptsbjg.execute-api.ap-northeast-2.amazonaws.com/prod/encrypt' --header 'Content-Type: application/json' --data-raw '{"plaintext": "Welcome To Gongma!!!!!!"}'
 ```
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/631e94d9-186f-4a45-a568-9021b56b2dd1)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/f3adc2ed-7f58-48de-b547-52a737bd1443)
+
 
 DynamoDB에 해당 “Welcome To Gongma!!!!!!” 문구가 암호화되서 저장
 
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/9e47ac50-27dd-4895-ba1c-dd3999ff363f)
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/77ab10a3-5701-4957-9c82-d7933f8c49a1)
+
 
 데이터를 복호화
 
 ```
-curl -sS --location --request POST 'https://d80a08cdhe.execute-api.ap-northeast-2.amazonaws.com/deploy/encrypt' --header 'Content-Type: application/json' --data-raw '{"uuid": "97643386-d085-4161-af39-3fe01c4ee94b"}'
+curl -sS --location --request POST 'https://nfbfptsbjg.execute-api.ap-northeast-2.amazonaws.com/prod/decrtpt' --header 'Content-Type: application/json' --data-raw '{"uuid": "d8a90883-89aa-48df-9b1d-71fb3853620f"}'
 ```
+![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/0129f72f-1613-427e-8d39-1ee08942fd01)
 
-![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/67ed6026-0fbd-4386-9329-d26adbd5e943)
