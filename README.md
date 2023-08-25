@@ -1,4 +1,4 @@
-Building a Cryptographic API Using AWS KMS
+Cryptographic Using API AND AWS KMS
 
 ![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/215c3db5-c722-4a8d-b101-49cf8ca0a738)
 
@@ -96,8 +96,8 @@ def lambda_handler(event, context):
                 "dynamodb:UpdateItem"
             ],
             "Resource": [
-                "arn:aws:dynamodb:ap-northeast-2:948216186415:table/demo-dynamodb-tables",
-                "arn:aws:dynamodb:*:948216186415:table/*/index/*"
+                "arn:aws:dynamodb:ap-northeast-2:<계정 ID>:table/db-table",
+                "arn:aws:dynamodb:*:<계정 ID>:table/*/index/*"
             ]
         },
         {
@@ -135,12 +135,12 @@ resource가 encrypt인 경우 암호화만 가능하고, decrypt인 경우 복�
 Deploy한 후 curl 요청
 
 ```
-curl -sS --location --request POST 'https://nfbfptsbjg.execute-api.ap-northeast-2.amazonaws.com/prod/encrypt' --header 'Content-Type: application/json' --data-raw '{"plaintext": "Welcome To Gongma!!!!!!"}'
+curl -sS --location --request POST 'https://nfbfptsbjg.execute-api.ap-northeast-2.amazonaws.com/prod/encrypt' --header 'Content-Type: application/json' --data-raw '{"plaintext": "MY API TEST"}'
 ```
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/f3adc2ed-7f58-48de-b547-52a737bd1443)
 
 
-DynamoDB에 해당 “Welcome To Gongma!!!!!!” 문구가 암호화되서 저장
+DynamoDB에 해당 “MY API TEST” 문구가 암호화되서 저장
 
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/762203e9-f4b3-48bf-a7b7-9942b367675d)
 
@@ -151,5 +151,5 @@ DynamoDB에 해당 “Welcome To Gongma!!!!!!” 문구가 암호화되서 저�
 ```
 curl -sS --location --request POST 'https://nfbfptsbjg.execute-api.ap-northeast-2.amazonaws.com/prod/decrtpt' --header 'Content-Type: application/json' --data-raw '{"uuid": "d8a90883-89aa-48df-9b1d-71fb3853620f"}'
 ```
-![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/0129f72f-1613-427e-8d39-1ee08942fd01)
+``` MY API TEST ```
 
