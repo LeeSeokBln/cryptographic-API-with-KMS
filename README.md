@@ -1,4 +1,4 @@
-![263155169-c8b9ce4a-3fb9-4a74-9312-7a393b7c2963](https://github.com/LeeSeokBln/cryptographic-with-API-and-KMS/assets/101256150/271e9ab7-b0c5-4168-a91a-396afe007591)# Cryptographic Using API AND AWS KMS
+# Cryptographic Using API AND AWS KMS
 
 <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/101256150/261237266-215c3db5-c722-4a8d-b101-49cf8ca0a738.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230828%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230828T001222Z&X-Amz-Expires=300&X-Amz-Signature=fb859476bf69e656164f10fd6b887369095a7f4c1c5ca06032a9614cbbab233c&X-Amz-SignedHeaders=host&actor_id=101256150&key_id=0&repo_id=679556584">
 
