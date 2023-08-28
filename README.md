@@ -1,7 +1,7 @@
 # Cryptographic Using API AND AWS KMS
 
 ![Untitled](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/215c3db5-c722-4a8d-b101-49cf8ca0a738)
-
+<img src="https://github-production-user-asset-6210df.s3.amazonaws.com/101256150/261237266-215c3db5-c722-4a8d-b101-49cf8ca0a738.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230828%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230828T001222Z&X-Amz-Expires=300&X-Amz-Signature=fb859476bf69e656164f10fd6b887369095a7f4c1c5ca06032a9614cbbab233c&X-Amz-SignedHeaders=host&actor_id=101256150&key_id=0&repo_id=679556584">
 ### Create DynamoDB Table
 
 ![image](https://github.com/LeeSeokBln/cryptographic-API-with-KMS/assets/101256150/9f1e0c6d-9896-4ec6-9d91-a1641705812f)
